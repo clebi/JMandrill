@@ -17,3 +17,5 @@ The Apache Software Foundation (http://www.apache.org/).
 
 This product includes Jackson JSON processor (http://jackson.codehaus.org/) which is licensed under the
 Apache (Software) License, version 2.0
+
+This software uses JUnit (http://junit.org) which is licensed under Eclipse Public License - v 1.0 (http://junit.org/license.html)
