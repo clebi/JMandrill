@@ -12,7 +12,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
    limitations under the License.
 
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).
 
-This product includes/uses software(s) developed by 'Apache Software Foundation'
-  - Apache CXF (http://cxf.apache.org/index.html)
-      License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+This product includes Jackson JSON processor (http://jackson.codehaus.org/) which is licensed under the
+Apache (Software) License, version 2.0
