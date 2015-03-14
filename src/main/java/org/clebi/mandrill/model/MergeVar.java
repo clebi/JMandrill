@@ -16,12 +16,14 @@
 
 package org.clebi.mandrill.model;
 
+import java.io.Serializable;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * Merge var used by templates
+ * @param <T> type of the merge var value
  */
-public class MergeVar<T> {
+public class MergeVar<T extends Serializable> {
 
     @JsonProperty("name")
     private String name;
