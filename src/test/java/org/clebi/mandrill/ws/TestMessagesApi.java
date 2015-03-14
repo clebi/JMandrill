@@ -93,7 +93,6 @@ public class TestMessagesApi {
         message.setReturn_path_domain("track.clebi.ovh");
         MessageStatus[] statuses = new MessagesApi(config.getProperty("api_url"), config.getProperty("api_key")).send(message, false);
         for (MessageStatus status : statuses) {
-            System.out.println("status: " + status);
             Assert.assertEquals(status.getStatus(), MessageStatus.STATUS_INVALID);
         }
 
