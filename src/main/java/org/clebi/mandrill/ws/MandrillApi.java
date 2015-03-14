@@ -16,6 +16,9 @@
 
 package org.clebi.mandrill.ws;
 
+/**
+ * basic mandrill api
+ */
 public class MandrillApi {
 
     private final String api_url;
@@ -23,6 +26,7 @@ public class MandrillApi {
 
     /**
      * create Mandrill api
+     *
      * @param api_url url of the mandrill api
      * @param api_key key of the mandrill api
      */

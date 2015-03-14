@@ -1,18 +1,18 @@
 /*
-Copyright 2015 Clément Bizeau
+ Copyright 2015 Clément Bizeau
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+ http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
 
 package org.clebi.mandrill.model;
 
@@ -23,6 +23,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Message
+ */
 public class Message {
 
     @JsonProperty("html")
@@ -100,6 +103,19 @@ public class Message {
     @JsonProperty("tags")
     private List<String> tags = new LinkedList<>();
 
+    /**
+     * create a message
+     *
+     * @param html html content of the message
+     * @param text text of the message
+     * @param subject subject of the message
+     * @param from_email from email for the message
+     * @param from_name from name for the message
+     * @param to list of recipients
+     * @param important is the message important
+     * @param track_opens enable opens tracking
+     * @param track_clicks enable clicks tracking
+     */
     public Message(String html,
                    String text,
                    String subject,

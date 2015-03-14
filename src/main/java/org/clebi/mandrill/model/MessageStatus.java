@@ -37,6 +37,7 @@ public class MessageStatus {
 
     /**
      * create message status
+     *
      * @param _id id of the message
      * @param status status of the message
      * @param email reccipient email
