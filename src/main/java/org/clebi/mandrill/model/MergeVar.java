@@ -21,13 +21,13 @@ import org.codehaus.jackson.annotate.JsonProperty;
 /**
  * Merge var used by templates
  */
-public class MergeVar {
+public class MergeVar<T> {
 
     @JsonProperty("name")
     private String name;
 
     @JsonProperty("content")
-    private String content;
+    private T content;
 
     /**
      * create merge var
@@ -35,7 +35,7 @@ public class MergeVar {
      * @param name name of the var
      * @param content content of the var
      */
-    public MergeVar(String name, String content) {
+    public MergeVar(String name, T content) {
         this.name = name;
         this.content = content;
     }
@@ -48,11 +48,11 @@ public class MergeVar {
         this.name = name;
     }
 
-    public String getContent() {
+    public T getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(T content) {
         this.content = content;
     }
 }

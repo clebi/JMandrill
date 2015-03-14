@@ -22,9 +22,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import org.clebi.mandrill.exception.MandrillApiException;
+import org.clebi.mandrill.model.MergeVar;
 import org.clebi.mandrill.model.Message;
 import org.clebi.mandrill.model.MessageStatus;
 import org.clebi.mandrill.model.Recipient;
+import org.clebi.mandrill.model.RecipientMergeVar;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -67,6 +69,14 @@ public class TestMessagesApi {
                 true,
                 true,
                 true);
+        List<MergeVar> mergeVars = new LinkedList<>();
+        mergeVars.add(new MergeVar<>("test", 1));
+        message.setGlobal_merge_vars(mergeVars);
+        List<RecipientMergeVar> rcptsMergeVars = new LinkedList<>();
+        RecipientMergeVar rcptMergeVars = new RecipientMergeVar(config.getProperty("recipient_email"));
+        rcptMergeVars.addMergeVar(new MergeVar<>("test_var", 3.14));
+        rcptsMergeVars.add(rcptMergeVars);
+        message.setMerge_vars(rcptsMergeVars);
         message.setTracking_domain("track.clebi.ovh");
         message.setReturn_path_domain("track.clebi.ovh");
         MessageStatus[] statuses = new MessagesApi(config.getProperty("api_url"), config.getProperty("api_key")).send(message, false);

@@ -30,7 +30,7 @@ public class RecipientMergeVar {
     private String rcpt;
 
     @JsonProperty("vars")
-    private List<MergeVar> vars = new LinkedList<>();
+    private List<MergeVar<?>> vars;
 
     /**
      * create per recipient merge var
@@ -38,9 +38,14 @@ public class RecipientMergeVar {
      * @param rcpt recipient email
      * @param vars list of merge vars
      */
-    public RecipientMergeVar(String rcpt, List<MergeVar> vars) {
+    public RecipientMergeVar(String rcpt, List<MergeVar<?>> vars) {
         this.rcpt = rcpt;
         this.vars = vars;
+    }
+    
+    public RecipientMergeVar(String rcpt) {
+        this.rcpt = rcpt;
+        this.vars = new LinkedList<>();
     }
 
     public String getRcpt() {
@@ -51,11 +56,15 @@ public class RecipientMergeVar {
         this.rcpt = rcpt;
     }
 
-    public List<MergeVar> getVars() {
+    public List<MergeVar<?>> getVars() {
         return vars;
     }
 
-    public void setVars(List<MergeVar> vars) {
+    public void setVars(List<MergeVar<?>> vars) {
         this.vars = vars;
+    }
+    
+    public void addMergeVar(MergeVar var) {
+        vars.add(var);
     }
 }
