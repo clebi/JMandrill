@@ -12,10 +12,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
    limitations under the License.
 
-This product includes software developed at
+This project includes software developed at
 The Apache Software Foundation (http://www.apache.org/).
 
-This product includes Jackson JSON processor (http://jackson.codehaus.org/) which is licensed under the
+This project includes Jackson JSON processor (http://jackson.codehaus.org/) which is licensed under the
 Apache (Software) License, version 2.0
 
-This software uses JUnit (http://junit.org) which is licensed under Eclipse Public License - v 1.0 (http://junit.org/license.html)
+This project includes TestNG (http://testng.org/doc/index.html) which is licensed under the
+Apache (Software) License, version 2.0
