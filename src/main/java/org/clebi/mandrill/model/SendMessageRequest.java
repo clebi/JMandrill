@@ -50,4 +50,36 @@ public class SendMessageRequest extends ApiRequest {
         this.async = async;
     }
 
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    public boolean isAsync() {
+        return async;
+    }
+
+    public void setAsync(boolean async) {
+        this.async = async;
+    }
+
+    public String getIp_pool() {
+        return ip_pool;
+    }
+
+    public void setIp_pool(String ip_pool) {
+        this.ip_pool = ip_pool;
+    }
+
+    public Date getSend_at() {
+        return send_at;
+    }
+
+    public void setSend_at(Date send_at) {
+        this.send_at = send_at;
+    }
+
 }
