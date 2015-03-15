@@ -16,6 +16,7 @@
 
 package org.clebi.mandrill.ws;
 
+import java.util.List;
 import org.clebi.mandrill.model.*;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
@@ -32,11 +33,13 @@ import org.clebi.mandrill.exception.MandrillApiException;
 public class MessagesApi extends MandrillApi {
 
     private static final String PATH_SEND = "messages/send.json";
+    private static final String PATH_SEND_TEMPLATE = "/messages/send-template.json";
 
     private final Client httpClient = ClientBuilder.newClient().register(JacksonJsonProvider.class);
 
     /**
      * create messages api
+     *
      * @param api_url url of the mandrill api
      * @param api_key key of the mandrill api
      */
@@ -58,6 +61,19 @@ public class MessagesApi extends MandrillApi {
                 Entity.entity(request, MediaType.APPLICATION_JSON_TYPE));
         if (resp.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL) {
             throw new MandrillApiException("unable to send message(s)", resp.readEntity(ApiError.class));
+        }
+        return resp.readEntity(MessageStatus[].class);
+    }
+
+    public MessageStatus[] sendTemplate(String template, 
+                                        List<MergeVar<String>> template_content, 
+                                        Message message, 
+                                        boolean async) throws MandrillApiException {
+        SendTemplateRequest request = new SendTemplateRequest(template, template_content, getApi_key(), message, async);
+        Response resp = httpClient.target(getApi_url()).path(PATH_SEND_TEMPLATE).request().post(
+                Entity.entity(request, MediaType.APPLICATION_JSON_TYPE));
+        if (resp.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL) {
+            throw new MandrillApiException("unable to send template message", resp.readEntity(ApiError.class));
         }
         return resp.readEntity(MessageStatus[].class);
     }

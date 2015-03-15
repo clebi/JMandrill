@@ -129,5 +129,34 @@ public class TestMessagesApi {
         }
 
     }
+    
+    @Test
+    public void testSendTemplate() throws MandrillApiException {
+        List<Recipient> recipients = new LinkedList<>();
+        recipients.add(new Recipient(config.getProperty("recipient_email"), config.getProperty("recipient_name"), "to"));
+        Message message = new Message(TEST_MESSAGE,
+                TEST_MESSAGE_TXT,
+                TEST_MESSAGE_SUBJECT,
+                config.getProperty("from_email"),
+                config.getProperty("from_name"),
+                recipients,
+                true,
+                true,
+                true);
+        List<RecipientMergeVar> rcptsMergeVars = new LinkedList<>();
+        RecipientMergeVar rcptMergeVars = new RecipientMergeVar(config.getProperty("recipient_email"));
+        rcptMergeVars.addMergeVar(new MergeVar<>("test_var", 3.14));
+        rcptsMergeVars.add(rcptMergeVars);
+        message.setMerge_vars(rcptsMergeVars);
+        message.setTracking_domain("track.clebi.ovh");
+        message.setReturn_path_domain("track.clebi.ovh");
+        List<MergeVar<String>> template_content = new LinkedList<>();
+        template_content.add(new MergeVar<>("main", "<h2>Hello, world!</h2>"));
+        MessageStatus[] statuses = new MessagesApi(config.getProperty("api_url"), config.getProperty("api_key")).
+                sendTemplate("test", template_content, message, false);
+        for (MessageStatus status : statuses) {
+            Assert.assertEquals(status.getStatus(), MessageStatus.STATUS_SENT);
+        }
+    }
 
 }
