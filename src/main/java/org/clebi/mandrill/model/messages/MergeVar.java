@@ -14,49 +14,32 @@
  limitations under the License.
  */
 
-package org.clebi.mandrill.model;
+package org.clebi.mandrill.model.messages;
 
+import java.io.Serializable;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
- * Message recipient
- *
- * @author clement
+ * Merge var used by templates
+ * @param <T> type of the merge var value
  */
-public class Recipient {
-
-    @JsonProperty("email")
-    private String email;
+public class MergeVar<T extends Serializable> {
 
     @JsonProperty("name")
     private String name;
 
-    @JsonProperty("type")
-    private String type;
-
-    public Recipient(String email) {
-        this.email = email;
-    }
+    @JsonProperty("content")
+    private T content;
 
     /**
-     * create a message recipient
+     * create merge var
      *
-     * @param email recipient email
-     * @param name recipient name
-     * @param type recipent type
+     * @param name name of the var
+     * @param content content of the var
      */
-    public Recipient(String email, String name, String type) {
-        this.email = email;
+    public MergeVar(String name, T content) {
         this.name = name;
-        this.type = type;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+        this.content = content;
     }
 
     public String getName() {
@@ -67,11 +50,11 @@ public class Recipient {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public T getContent() {
+        return content;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setContent(T content) {
+        this.content = content;
     }
 }

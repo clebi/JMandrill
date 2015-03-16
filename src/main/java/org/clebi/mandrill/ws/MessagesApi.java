@@ -16,8 +16,13 @@
 
 package org.clebi.mandrill.ws;
 
+import org.clebi.mandrill.model.messages.MessageStatus;
+import org.clebi.mandrill.model.messages.SendTemplateRequest;
+import org.clebi.mandrill.model.ApiError;
+import org.clebi.mandrill.model.messages.MergeVar;
+import org.clebi.mandrill.model.messages.Message;
+import org.clebi.mandrill.model.messages.SendMessageRequest;
 import java.util.List;
-import org.clebi.mandrill.model.*;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
 import javax.ws.rs.client.Client;

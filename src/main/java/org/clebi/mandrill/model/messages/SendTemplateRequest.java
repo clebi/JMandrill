@@ -14,7 +14,7 @@
  limitations under the License.
  */
 
-package org.clebi.mandrill.model;
+package org.clebi.mandrill.model.messages;
 
 import java.util.LinkedList;
 import java.util.List;
