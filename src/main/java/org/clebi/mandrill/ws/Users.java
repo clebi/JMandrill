@@ -17,6 +17,7 @@
 package org.clebi.mandrill.ws;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import javax.ws.rs.core.MediaType;
 import org.clebi.mandrill.exception.MandrillApiException;
 import org.clebi.mandrill.model.users.Ping2Request;
 import org.clebi.mandrill.model.users.Ping2Response;
@@ -30,7 +31,7 @@ public class Users extends MandrillApi {
     private static final String PATH_PING2 = "ping2.json";
 
     public Users(String api_url, String api_key) {
-        super(api_url, api_key, PATH_API, JacksonJsonProvider.class);
+        super(api_url, api_key, PATH_API, JacksonJsonProvider.class, MediaType.APPLICATION_JSON_TYPE);
     }
 
     public Ping2Response ping2() throws MandrillApiException {

@@ -36,6 +36,7 @@ public class MandrillApi {
 
     private final Client httpClient;
     private final WebTarget target;
+    private final MediaType mediaType;
 
     /**
      * create Mandrill api
@@ -44,18 +45,20 @@ public class MandrillApi {
      * @param api_key key of the mandrill api
      * @param api_path path of the concerned api
      * @param clazz deserializer class
+     * @param mediaType media type for api
      */
-    public MandrillApi(String api_url, String api_key, String api_path, Class clazz) {
+    public MandrillApi(String api_url, String api_key, String api_path, Class clazz, MediaType mediaType) {
         this.api_url = api_url;
         this.api_key = api_key;
         this.api_path = api_path;
+        this.mediaType = mediaType;
         this.httpClient = ClientBuilder.newClient();
         this.httpClient.register(clazz);
         this.target = this.httpClient.target(this.api_url).path(api_path);
     }
 
     public <T> T execute(String call, Object request, Class<T> clazz) throws MandrillApiException {
-        Response resp = target.path(call).request().post(Entity.entity(request, MediaType.APPLICATION_JSON_TYPE));
+        Response resp = target.path(call).request().post(Entity.entity(request, mediaType));
         if (resp.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL) {
             throw new MandrillApiException("unable to execute " + api_path + call, resp.readEntity(ApiError.class));
         }

@@ -23,6 +23,7 @@ import org.clebi.mandrill.model.messages.MergeVar;
 import org.clebi.mandrill.model.messages.Message;
 import org.clebi.mandrill.model.messages.SendMessageRequest;
 import java.util.List;
+import javax.ws.rs.core.MediaType;
 
 import org.clebi.mandrill.exception.MandrillApiException;
 
@@ -42,7 +43,7 @@ public class MessagesApi extends MandrillApi {
      * @param api_key key of the mandrill api
      */
     public MessagesApi(String api_url, String api_key) {
-        super(api_url, api_key, PATH_API, JacksonJsonProvider.class);
+        super(api_url, api_key, PATH_API, JacksonJsonProvider.class, MediaType.APPLICATION_JSON_TYPE);
     }
 
     /**
