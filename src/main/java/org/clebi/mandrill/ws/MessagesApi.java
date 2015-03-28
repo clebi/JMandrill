@@ -16,6 +16,7 @@
 
 package org.clebi.mandrill.ws;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.clebi.mandrill.model.messages.MessageStatus;
 import org.clebi.mandrill.model.messages.SendTemplateRequest;
 import org.clebi.mandrill.model.ApiError;
@@ -23,7 +24,6 @@ import org.clebi.mandrill.model.messages.MergeVar;
 import org.clebi.mandrill.model.messages.Message;
 import org.clebi.mandrill.model.messages.SendMessageRequest;
 import java.util.List;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -70,9 +70,9 @@ public class MessagesApi extends MandrillApi {
         return resp.readEntity(MessageStatus[].class);
     }
 
-    public MessageStatus[] sendTemplate(String template, 
-                                        List<MergeVar<String>> template_content, 
-                                        Message message, 
+    public MessageStatus[] sendTemplate(String template,
+                                        List<MergeVar<String>> template_content,
+                                        Message message,
                                         boolean async) throws MandrillApiException {
         SendTemplateRequest request = new SendTemplateRequest(template, template_content, getApi_key(), message, async);
         Response resp = httpClient.target(getApi_url()).path(PATH_SEND_TEMPLATE).request().post(

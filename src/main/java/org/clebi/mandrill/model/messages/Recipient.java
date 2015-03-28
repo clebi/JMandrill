@@ -16,7 +16,7 @@
 
 package org.clebi.mandrill.model.messages;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Message recipient

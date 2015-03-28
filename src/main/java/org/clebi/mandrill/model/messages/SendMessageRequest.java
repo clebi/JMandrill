@@ -16,8 +16,8 @@
 
 package org.clebi.mandrill.model.messages;
 
-import org.codehaus.jackson.annotate.JsonProperty;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import org.clebi.mandrill.model.ApiRequest;
 

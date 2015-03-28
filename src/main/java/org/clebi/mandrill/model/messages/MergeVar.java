@@ -16,8 +16,8 @@
 
 package org.clebi.mandrill.model.messages;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * Merge var used by templates

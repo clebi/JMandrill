@@ -11,7 +11,7 @@ repositories {
 dependencies {
     compile group: 'org.apache.cxf', name: 'cxf-rt-rs-client', version: '3.0.3'
     compile group: 'org.apache.cxf', name: 'cxf-rt-transports-http-hc', version: '3.0.3'
-    compile group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version: '1.9.13'
+    compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.5.0'
     testCompile group: 'org.testng', name: 'testng', version: '6.8.21'
 }
 

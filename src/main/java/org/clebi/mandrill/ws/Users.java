@@ -16,6 +16,7 @@
 
 package org.clebi.mandrill.ws;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -25,7 +26,6 @@ import org.clebi.mandrill.exception.MandrillApiException;
 import org.clebi.mandrill.model.ApiError;
 import org.clebi.mandrill.model.users.Ping2Request;
 import org.clebi.mandrill.model.users.Ping2Response;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
 /**
  * Mandrill users api
