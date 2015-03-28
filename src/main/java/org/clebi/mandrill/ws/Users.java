@@ -17,13 +17,7 @@
 package org.clebi.mandrill.ws;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import org.clebi.mandrill.exception.MandrillApiException;
-import org.clebi.mandrill.model.ApiError;
 import org.clebi.mandrill.model.users.Ping2Request;
 import org.clebi.mandrill.model.users.Ping2Response;
 
@@ -32,22 +26,16 @@ import org.clebi.mandrill.model.users.Ping2Response;
  */
 public class Users extends MandrillApi {
 
-    private static final String PATH_PING2 = "/users/ping2.json";
-
-    private final Client httpClient = ClientBuilder.newClient().register(JacksonJsonProvider.class);
+    private static final String PATH_API = "/users/";
+    private static final String PATH_PING2 = "ping2.json";
 
     public Users(String api_url, String api_key) {
-        super(api_url, api_key);
+        super(api_url, api_key, PATH_API, JacksonJsonProvider.class);
     }
 
     public Ping2Response ping2() throws MandrillApiException {
         Ping2Request request = new Ping2Request(getApi_key());
-        Response resp = httpClient.target(getApi_url()).path(PATH_PING2).request().post(
-                Entity.entity(request, MediaType.APPLICATION_JSON_TYPE));
-        if(resp.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL) {
-            throw new MandrillApiException("unable to send ping2 request", resp.readEntity(ApiError.class));
-        }
-        return resp.readEntity(Ping2Response.class);
+        return execute(PATH_PING2, request, Ping2Response.class);
     }
 
 }

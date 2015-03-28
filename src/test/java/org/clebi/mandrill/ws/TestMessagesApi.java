@@ -80,8 +80,9 @@ public class TestMessagesApi {
         message.setTracking_domain("track.clebi.ovh");
         message.setReturn_path_domain("track.clebi.ovh");
         MessageStatus[] statuses = new MessagesApi(config.getProperty("api_url"), config.getProperty("api_key")).send(message, false);
+        Assert.assertEquals(statuses.length, 1, "there must be one status");
         for (MessageStatus status : statuses) {
-            Assert.assertEquals(status.getStatus(), MessageStatus.STATUS_SENT);
+            Assert.assertEquals(status.getStatus(), MessageStatus.STATUS_SENT, "message status must be sent");
         }
 
     }
@@ -108,7 +109,7 @@ public class TestMessagesApi {
 
     }
     
-    @Test(expectedExceptions = MandrillApiException.class, expectedExceptionsMessageRegExp = "unable to send message\\(s\\) - error: Invalid API key")
+    @Test(expectedExceptions = MandrillApiException.class, expectedExceptionsMessageRegExp = "unable to execute /messages/send.json - error: Invalid API key")
     public void testSendBadApiKey() throws MandrillApiException {
         List<Recipient> recipients = new LinkedList<>();
         recipients.add(new Recipient(config.getProperty("recipient_email"), config.getProperty("recipient_name"), "to"));
