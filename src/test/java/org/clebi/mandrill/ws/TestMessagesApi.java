@@ -18,6 +18,8 @@ package org.clebi.mandrill.ws;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -27,6 +29,7 @@ import org.clebi.mandrill.model.messages.Message;
 import org.clebi.mandrill.model.messages.MessageStatus;
 import org.clebi.mandrill.model.messages.Recipient;
 import org.clebi.mandrill.model.messages.RecipientMergeVar;
+import org.clebi.mandrill.model.messages.SearchResponse;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -157,6 +160,22 @@ public class TestMessagesApi {
                 sendTemplate("test", template_content, message, false);
         for (MessageStatus status : statuses) {
             Assert.assertEquals(status.getStatus(), MessageStatus.STATUS_SENT);
+        }
+    }
+    
+    @Test
+    public void testSearch() throws MandrillApiException, IOException {
+        //TODO improve test
+        Date dateFrom = GregorianCalendar.getInstance().getTime();
+        Date dateTo = GregorianCalendar.getInstance().getTime();
+        MessagesApi messageApi = new MessagesApi(config.getProperty("api_url"), config.getProperty("api_key"));
+        SearchResponse[] responses = messageApi.search(
+                "state: sent", dateFrom, dateTo, new LinkedList<String>(), new LinkedList<String>(),
+                new LinkedList<String>(), 10);
+        Assert.assertNotNull(responses, "search response is null");
+        for(SearchResponse searchResp : responses) {
+            Assert.assertTrue(searchResp.getTs() > 0, "timestamp is incorrect");
+            Assert.assertTrue(searchResp.getId().length() > 0, "id length is less than 1");
         }
     }
 

@@ -24,8 +24,11 @@ import org.clebi.mandrill.model.messages.Message;
 import org.clebi.mandrill.model.messages.SendMessageRequest;
 import java.util.List;
 import javax.ws.rs.core.MediaType;
+import java.util.Date;
 
 import org.clebi.mandrill.exception.MandrillApiException;
+import org.clebi.mandrill.model.messages.SearchRequest;
+import org.clebi.mandrill.model.messages.SearchResponse;
 
 /**
  * Mandrill Messages Api
@@ -35,6 +38,7 @@ public class MessagesApi extends MandrillApi {
     private static final String PATH_API = "/messages/";
     private static final String PATH_SEND = "send.json";
     private static final String PATH_SEND_TEMPLATE = "send-template.json";
+    private static final String PATH_SEARCH = "search.json";
 
     /**
      * create messages api
@@ -65,6 +69,30 @@ public class MessagesApi extends MandrillApi {
                                         boolean async) throws MandrillApiException {
         SendTemplateRequest request = new SendTemplateRequest(template, template_content, getApi_key(), message, async);
         return execute(PATH_SEND_TEMPLATE, request, MessageStatus[].class);
+    }
+
+    /**
+     * execute search query
+     *
+     * @param query query string, take a look at mandrill query language
+     * @param dateFrom search from date
+     * @param dateTo search to date
+     * @param tags list of tags to narrow the search
+     * @param senders list of sender to narrow the search
+     * @param apiKeys list of api keys to narrow the search
+     * @param limit maximum number of result
+     * @return list of search response
+     * @throws MandrillApiException
+     */
+    public SearchResponse[] search(String query,
+                                   Date dateFrom,
+                                   Date dateTo,
+                                   List<String> tags,
+                                   List<String> senders,
+                                   List<String> apiKeys,
+                                   int limit) throws MandrillApiException {
+        SearchRequest request = new SearchRequest(getApi_key(), query, dateFrom, dateTo, tags, senders, apiKeys, limit);
+        return execute(PATH_SEARCH, request, SearchResponse[].class);
     }
 
 }
