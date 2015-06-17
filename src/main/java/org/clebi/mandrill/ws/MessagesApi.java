@@ -53,10 +53,10 @@ public class MessagesApi extends MandrillApi {
     /**
      * Send a message
      *
-     * @param message message to be send
+     * @param message message to be sent
      * @param async asynchrone sending
      * @return statuses of the sent messages
-     * @throws org.clebi.mandrill.exception.MandrillApiException an error happened during api call
+     * @throws MandrillApiException an error happened during api call
      */
     public MessageStatus[] send(Message message, boolean async) throws MandrillApiException {
         SendMessageRequest request = new SendMessageRequest(getApi_key(), message, false);
