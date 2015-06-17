@@ -91,7 +91,7 @@ public class MessagesApi extends MandrillApi {
      * @param apiKeys list of api keys to narrow the search
      * @param limit maximum number of result
      * @return list of search response
-     * @throws MandrillApiException
+     * @throws MandrillApiException an error happened during api call
      */
     public SearchResponse[] search(String query,
                                    Date dateFrom,
