@@ -63,6 +63,15 @@ public class MessagesApi extends MandrillApi {
         return execute(PATH_SEND, request, MessageStatus[].class);
     }
 
+    /**
+     * send a message using a template
+     * @param template template name
+     * @param template_content mailchimp content block
+     * @param message Message to be sent (html and text could be empty in this one)
+     * @param async asynchrone sending
+     * @return statuses of the sent messages
+     * @throws MandrillApiException an error happened during api call
+     */
     public MessageStatus[] sendTemplate(String template,
                                         List<MergeVar<String>> template_content,
                                         Message message,
